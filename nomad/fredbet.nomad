@@ -13,6 +13,14 @@ job "fredbet" {
       name = "fredbet"
       tags = ["global", "fredbet"]
       port = "http"
+
+//      check {
+//        type = "http"
+//        name = "http-health"
+//        path = "/actuator/health"
+//        interval = "10s"
+//        timeout = "3s"
+//      }
     }
 
     task "fredbet-task" {
