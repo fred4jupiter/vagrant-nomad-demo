@@ -2,10 +2,10 @@ job "demo-webapp" {
   datacenters = ["dc1"]
 
   group "demo" {
-    count = 3
+    count = 1
 
     network {
-      port  "http"{
+      port "http" {
         to = -1
       }
     }
@@ -19,17 +19,17 @@ job "demo-webapp" {
         "traefik.http.routers.http.rule=Path(`/myapp`)",
       ]
 
-      check {
-        type     = "http"
-        path     = "/"
-        interval = "2s"
-        timeout  = "2s"
-      }
+//      check {
+//        type = "http"
+//        path = "/"
+//        interval = "2s"
+//        timeout = "2s"
+//      }
     }
 
     task "server" {
       env {
-        PORT    = "${NOMAD_PORT_http}"
+        PORT = "${NOMAD_PORT_http}"
         NODE_IP = "${NOMAD_IP_http}"
       }
 
