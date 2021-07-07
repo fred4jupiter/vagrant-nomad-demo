@@ -4,6 +4,11 @@
 # define box name
 NAME = "vagrant-nomad-demo"
 
+unless Vagrant.has_plugin?("vagrant-reload")
+  puts 'Installing vagrant-reload plugin...'
+  system('vagrant plugin install vagrant-reload')  
+end
+
 unless Vagrant.has_plugin?("vagrant-docker-compose")
   puts 'Installing vagrant-docker-compose Plugin...'
   system('vagrant plugin install vagrant-docker-compose')
@@ -22,5 +27,9 @@ Vagrant.configure(2) do |config|
 	vb.customize ["modifyvm", :id, "--cpus", "4"]
     vb.name = NAME
   end  
-  config.vm.provision "shell", path: "scripts/nomad.sh" 
+    
+  config.vm.provision "shell", inline: "sudo hostnamectl set-hostname vagrant-nomad-demo"
+  config.vm.provision "shell", inline: "sudo apt update && sudo apt upgrade -y"
+  config.vm.provision "shell", path: "install/nomad.sh"   
+  config.vm.provision :reload
 end
