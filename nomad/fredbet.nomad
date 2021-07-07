@@ -1,6 +1,6 @@
 job "fredbet" {
   datacenters = ["dc1"]
-  type = "service"
+//  type = "service"
 
   group "fredbet-group" {
     network {
@@ -9,11 +9,11 @@ job "fredbet" {
       }
     }
 
-    service {
-      name = "fredbet"
-      tags = ["global", "fredbet"]
-      port = "http"
-    }
+//    service {
+//      name = "fredbet"
+//      tags = ["global", "fredbet"]
+//      port = "http"
+//    }
 
     task "fredbet-task" {
       driver = "docker"
@@ -21,10 +21,11 @@ job "fredbet" {
       config {
         image = "fred4jupiter/fredbet:latest"
         ports = ["http"]
-        resources {
-          cpu = 500
-          memory = 1024
-        }
+      }
+
+      resources {
+        cpu = 500
+        memory = 512
       }
     }
   }
