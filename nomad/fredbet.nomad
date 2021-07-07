@@ -4,14 +4,8 @@ job "fredbet" {
 
   group "fredbet-group" {
     network {
-      # Dynamic ports
-      port "foo" {}
-      port "bar" {}
       # Mapped ports
-      port "http"  { to = 80 }
-      port "https" { to = 443 }
-      # Static ports
-      port "lb" { static = 8080 }
+      port "http"  { to = 8080 }
     }
 
     service {
@@ -33,7 +27,7 @@ job "fredbet" {
 
       config {
         image = "fred4jupiter/fredbet:latest"
-        ports = ["lb"]
+        ports = ["http"]
       }
 
       resources {
