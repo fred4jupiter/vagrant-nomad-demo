@@ -2,7 +2,7 @@
 
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install nomad -y
-sudo systemctl enable nomad
-sudo systemctl start nomad
-sudo systemctl status nomad
+sudo apt-get update && sudo apt-get install consul
+sudo systemctl enable consul
+sudo systemctl start consul
+sudo systemctl status consul
